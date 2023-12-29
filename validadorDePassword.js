@@ -63,4 +63,55 @@ function ValidarDebeContenerAlgunCaracterEspecial(password){
     return false;
 }
 
+function EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword() {
+     
+    var password = document.getElementById("contraseñaNueva").value;
 
+    if  (ValidarLargoMinimo(password)) {
+        document.getElementById("reglaCaracterLongMin").innerHTML = "(OK)   ";
+        // muestro "OK: "
+    } else {
+        document.getElementById("reglaCaracterLongMin").innerHTML = "(Falta)   ";
+        // muestro "Falta: "
+    }
+
+    if  (ValidarLargoMaximo(password)){ 
+         document.getElementById("reglaCaracterLongMax").innerHTML = "(OK)   ";
+        // muestro "OK: "
+    } else {
+        document.getElementById("reglaCaracterLongMax").innerHTML = "(Falta)   ";
+        // muestro "Falta: "
+    }
+    
+    if  (ValidarDebeContenerAlgunNumero(password)) {
+        document.getElementById("reglaCaracterNumerico").innerHTML = "(OK)   ";
+        // muestro "OK: "
+    } else {
+        document.getElementById("reglaCaracterNumerico").innerHTML = "(Falta)   ";
+        // muestro "Falta: "
+    }
+    
+    if  (ValidarDebeContenerAlgunaMinuscula(password)) {
+        document.getElementById("reglaCaracterMinuscula").innerHTML = "(OK)   ";
+        // muestro "OK: "
+    } else {
+        document.getElementById("reglaCaracterMinuscula").innerHTML = "(Falta)   ";
+        // muestro "Falta: "
+    }
+    
+    if  (ValidarDebeContenerAlgunaMayuscula(password)) {
+        document.getElementById("reglaCaracterMayuscula").innerHTML = "(OK)   ";
+        // muestro "OK: "
+    } else {
+        document.getElementById("reglaCaracterMayuscula").innerHTML = "(Falta)   ";
+        // muestro "Falta: "
+    }
+    
+    if  (ValidarDebeContenerAlgunCaracterEspecial(password)) {
+        document.getElementById("reglaCaracterEspecial").innerHTML = "(OK)   ";
+        // muestro "OK: "
+    } else {
+         document.getElementById("reglaCaracterEspecial").innerHTML = "(Falta)   ";
+        // muestro "Falta: "
+    }
+}

@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="validadorDePassword.js"></script>
+        <link rel="stylesheet" href="estilo.css">
         <title>Validador de Password</title>
     </head>
     <body>
@@ -12,7 +13,7 @@
         <input type="text" id="contraseñaActual" placeholder="Contraseña Actual">
         <br>
         <br>
-        <input type="text" id="contraseñaNueva" placeholder="Contraseña Nueva">
+        <input type="text" id="contraseñaNueva" placeholder="Contraseña Nueva" oninput="EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword()">
         <br>
         <br>
         <input type="text" id="contraseñaNuevaRepetida"  placeholder="Repetir Contraseña Nueva">
@@ -29,33 +30,33 @@
             </div>
             <div>
                 <div>
-                    <p>Un caracteres numericos</p>
+                    <p><span id="reglaCaracterLongMin">  </span>Longuitud minima de 5 caracteres</p>
                 </div>
             </div>
             <div>
                 <div>
-                    <p>Longuitud Maxima de veinte caracteres</p>
+                    <p><span id="reglaCaracterLongMax">     </span>Longuitud Maxima de veinte caracteres</p>
                 </div>
             </div>
             <div>
                 <div>
-                    <p>Longuitud minima de diez caracteres</p>
+                    <p><span id="reglaCaracterNumerico"></span>Un caracteres numericos</p>
                 </div>
             </div>
             <div>
                 <div>
-                    <p>Una Minúscula</p>
+                    <p><span id="reglaCaracterMinuscula">  </span>Una Minúscula</p>
                 </div>
             </div>
             <div>
                 <div>
-                    <p>Una mayúscula</p>
+                    <p><span id="reglaCaracterMayuscula">  </span>Una mayúscula</p>
                 </div>
             </div>
             
             <div>
                 <div>
-                    <p>Un Caracter Especial</p>
+                    <p><span id="reglaCaracterEspecial">  </span>Un Caracter Especial</p>
                 </div>
             </div>    
         </div>
