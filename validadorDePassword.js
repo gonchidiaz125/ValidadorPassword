@@ -19,16 +19,17 @@ function ValidarLargoMaximo(password){
     return false;
 }
 
-function ValidarDebeContenerAlgunNumero(){
+//  la expresión regular "  /^\d$/  " verifica si un carácter es numérico. 
+function ValidarDebeContenerAlgunNumero(password){
     for(var i = 0; i < password.length; i++){
-        if(isNaN(parseInt(password[i]))){
+        if(/^\d$/.test(password[i])){
             return true;
-        }
-        return false;
+        }    
     }
+    return false;
 }
 
-function ValidarDebeContenerAlgunaMinuscula(){
+function ValidarDebeContenerAlgunaMinuscula(password){
     for(var i = 0; i < password.length; i++)
     {
         if(/^[a-z]$/.test(password[i])){
@@ -38,7 +39,7 @@ function ValidarDebeContenerAlgunaMinuscula(){
     return false;
 }
 
-function ValidarDebeContenerAlgunaMayuscula(){
+function ValidarDebeContenerAlgunaMayuscula(password){
     for(var i = 0; i < password.length; i++)
     {
         if(/^[A-Z]$/.test(password[i]))
@@ -48,4 +49,18 @@ function ValidarDebeContenerAlgunaMayuscula(){
     }
     return false;
 }
+
+
+// la expresión regular "  /^[^\w\d]$/  " verifica si un carácter no es alfanumérico
+function ValidarDebeContenerAlgunCaracterEspecial(password){
+    for(var i = 0; i < password.length; i++)
+    {
+        if(/^[^\w\d]$/.test(password[i]))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 
