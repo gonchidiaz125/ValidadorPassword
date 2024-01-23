@@ -115,3 +115,17 @@ function EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword() {
         // muestro "Falta: "
     }
 }
+
+function RepetirNuevaContraseña(){
+    var passwordNuevo = document.getElementById("contraseñaNueva").value;
+    var passwordNuevoRepetido = document.getElementById("contraseñaNuevaRepetida").value;
+
+    if (passwordNuevo === passwordNuevoRepetido)
+    {
+        document.getElementById("lasContraseñasCoinciden").innerHTML = "(OK)   ";
+    }else
+    {
+        document.getElementById("lasContraseñasCoinciden").innerHTML = "(FALSE)   ";
+    }
+
+}
