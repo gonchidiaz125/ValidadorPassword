@@ -6,62 +6,66 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="validadorDePassword.js"></script>
         <link rel="stylesheet" href="estilo.css">
+        
         <title>Validador de Password</title>
     </head>
-    <body>
-        <h2>Modificar Clave</h2>
-        <input type="text" id="contraseñaActual" placeholder="Contraseña Actual">
-        <br>
-        <br>
-        <input type="password" id="contraseñaNueva" placeholder="Contraseña Nueva" oninput="EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword()"> <button onclick="HacerVisibleContraseña('contraseñaNueva')">ver</button>
-        <br>
-        <br>
-        <input type="password" id="contraseñaNuevaRepetida"  placeholder="Repetir Contraseña Nueva" oninput="RepetirNuevaContraseña()"> <button onclick="HacerVisibleContraseña('contraseñaNuevaRepetida')">ver</button>
-        <p><span id="lasContraseñasCoinciden"></span></p>
-        <br>
-        <br> 
-        <button>CONTINUAR</button>
-        <button>CANCELAR</button>
-        <div class="container">
-            <div>
+    <body class="cuerpo">
+        <div>
+            <h2>Modificar Clave</h2>
+            <input type="password" id="contraseñaActual" placeholder="Contraseña Actual"> <button onclick="HacerVisibleContraseña('contraseñaActual')">ver</button>
+            <br>
+            <br>
+            <input type="password" id="contraseñaNueva" placeholder="Contraseña Nueva" oninput="EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword()"> <button onclick="HacerVisibleContraseña('contraseñaNueva')">ver</button>
+            <br>
+            <br>
+            <input type="password" id="contraseñaNuevaRepetida"  placeholder="Repetir Contraseña Nueva" oninput="RepetirNuevaContraseña()"> <button onclick="HacerVisibleContraseña('contraseñaNuevaRepetida')">ver</button>
+            <p><span id="lasContraseñasCoinciden"></span></p>
+            <br>
+            <br> 
+            <button>CONTINUAR</button>
+            <button>CANCELAR</button>
+            <br>
+            <br>
+            <div class="container">
                 <div>
-                    <h2>¡IMPORTANTE!</h2>
-                    <p>Tu nueva clave debe contener al menos:</p>
+                    <div>
+                        <h2>¡IMPORTANTE!</h2>
+                        <p><img id="importante" src="/imagenes/info.png"class="info"> Tu clave debe contener al menos:</p>
+                    </div>
                 </div>
+                <div>
+                    <div>
+                        <p><img id="faltaReglaCaracterLongMin" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterLongMin" src="/imagenes/ok.png" class="OK"><span id="reglaCaracterLongMin">  </span>Longuitud minima de 5 caracteres</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p><img id="faltaReglaCaracterLongMax" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterLongMax" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterLongMax">     </span>Longuitud Maxima de veinte caracteres</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p><img id="faltaReglaCaracterNumerico" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterNumerico" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterNumerico">     </span>Un caracteres numericos</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p><img id="faltaReglaCaracterMinuscula" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterMinuscula" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterMinuscula">  </span>Una Minúscula</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p><img id="faltaReglaCaracterMayuscula" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterMayuscula" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterMayuscula">  </span>Una mayúscula</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <div>
+                        <p><img id="faltaReglaCaracterEspecial" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterEspecial" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterEspecial">  </span>Un Caracter Especial</p>
+                    </div>
+                </div>    
             </div>
-            <div>
-                <div>
-                    <p><span id="reglaCaracterLongMin">  </span>Longuitud minima de 5 caracteres</p>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <p><span id="reglaCaracterLongMax">     </span>Longuitud Maxima de veinte caracteres</p>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <p><span id="reglaCaracterNumerico"></span>Un caracteres numericos</p>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <p><span id="reglaCaracterMinuscula">  </span>Una Minúscula</p>
-                </div>
-            </div>
-            <div>
-                <div>
-                    <p><span id="reglaCaracterMayuscula">  </span>Una mayúscula</p>
-                </div>
-            </div>
-            
-            <div>
-                <div>
-                    <p><span id="reglaCaracterEspecial">  </span>Un Caracter Especial</p>
-                </div>
-            </div>    
-        </div>
-
+        </div>    
                
     </body>
 </html>

@@ -1,3 +1,40 @@
-span{
-    background-color: coral;
+
+/* img {
+    width: 15px;
+    height: 15px;
+} */
+.cuerpo{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 5%;
+    box-shadow: 0 0 110px rgba(0, 0, 0, 0.5);
+    padding: 3%;
+    padding-left: 6%;
+    
 }
+.container{
+    border-style: outset;
+    padding: 2%;
+}
+.cruz-roja {
+    width: 20px; 
+    height: 20px; 
+    margin-right: 5px; 
+    vertical-align: middle; 
+    display: inline-block;
+  }
+  .OK{
+    width: 30px; 
+    height: 30px; 
+    margin-right: 1px;
+    vertical-align: middle; 
+    display: inline-block;
+  }
+  .info{
+    width: 30px; 
+    height: 30px; 
+    margin-right: 10px;
+    vertical-align: middle; 
+    display: inline-block;
+  }
