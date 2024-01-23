@@ -129,3 +129,12 @@ function RepetirNuevaContraseña(){
     }
 
 }
+function HacerVisibleContraseña(idInputContraseña){
+    var passwordInput = document.getElementById(idInputContraseña);
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+      } else {
+        passwordInput.type = 'password';
+      }
+}
