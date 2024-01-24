@@ -3,13 +3,9 @@ $(document).ready(function() {
     //Ejecuto esto para que no se muestre si las reglas se cumplen o no se cumplen antes que el usuario ingrese una contraseña
     RequisitosParaPasswordValido();
 
-    // onclick="HacerVisibleContraseña('contraseñaActual')"
-    // $("#btnMostrarPassowrdActual").click(HacerVisibleContraseña('contraseñaActual'));
-
      $("#btnMostrarPassowrdActual").click(function() {
         HacerVisibleContraseña('contraseñaActual');
      });
-
      $("#contraseñaNueva").on("input", function(){
         RequisitosParaPasswordValido("contraseñaNueva");
      });
@@ -25,9 +21,6 @@ $(document).ready(function() {
      $("#btnMostrarContraseñaRepetida").click(function(){
         HacerVisibleContraseña("contraseñaNuevaRepetida");
      });
-     //$("#").click(function(){
-       // ();
-     //});
 
     function ValidarLargoMinimo(password){
         let largoMinimo = 5;
@@ -108,68 +101,56 @@ $(document).ready(function() {
             $("#okReglaCaracterMayuscula").hide();
             $("#faltaReglaCaracterEspecial").hide();
             $("#okReglaCaracterEspecial").hide();
-            
+
             return;
         }
         
         if  (ValidarLargoMinimo(password)) {
             $("#okReglaCaracterLongMin").show();
             $("#faltaReglaCaracterLongMin").hide();
-            // muestro "OK: "
         } else {
             $("#faltaReglaCaracterLongMin").show();
             $("#okReglaCaracterLongMin").hide()
-            // muestro "Falta: "
         }
     
         if  (ValidarLargoMaximo(password)){ 
             $("#okReglaCaracterLongMax").show();
             $("#faltaReglaCaracterLongMax").hide();
-            // muestro "OK: "
         } else {
             $("#faltaReglaCaracterLongMax").show();
             $("#okReglaCaracterLongMax").hide();
-            // muestro "Falta: "
         }
         
         if  (ValidarDebeContenerAlgunNumero(password)) {
             $("#okReglaCaracterNumerico").show();
             $("#faltaReglaCaracterNumerico").hide();
-            // muestro "OK: "
         } else {
             $("#faltaReglaCaracterNumerico").show();
             $("#okReglaCaracterNumerico").hide();
-            // muestro "Falta: "
         }
         
         if  (ValidarDebeContenerAlgunaMinuscula(password)) {
             $("#okReglaCaracterMinuscula").show();
             $("#faltaReglaCaracterMinuscula").hide();
-            // muestro "OK: "
         } else {
             $("#faltaReglaCaracterMinuscula").show();
             $("#okReglaCaracterMinuscula").hide();
-            // muestro "Falta: "
         }
         
         if  (ValidarDebeContenerAlgunaMayuscula(password)) {
             $("#okReglaCaracterMayuscula").show();
             $("#faltaReglaCaracterMayuscula").hide();
-            // muestro "OK: "
         } else {
             $("#faltaReglaCaracterMayuscula").show();
             $("#okReglaCaracterMayuscula").hide();
-            // muestro "Falta: "
         }
         
         if  (ValidarDebeContenerAlgunCaracterEspecial(password)) {
             $("#okReglaCaracterEspecial").show();
             $("#faltaReglaCaracterEspecial").hide();
-            // muestro "OK: "
         } else {
             $("#faltaReglaCaracterEspecial").show();
             $("#okReglaCaracterEspecial").hide();
-            // muestro "Falta: "
         }
         
     }
@@ -180,11 +161,12 @@ $(document).ready(function() {
     
         if (passwordNuevo === passwordNuevoRepetido)
         {
-            document.getElementById("lasContraseñasCoinciden").innerHTML = "(OK)   ";
+            document.getElementById("lasContraseñasCoinciden").innerHTML = "";
         }else
         {
-            document.getElementById("lasContraseñasCoinciden").innerHTML = "(FALSE)   ";
-        }if(passwordNuevo === "" && passwordNuevoRepetido === ""){
+            document.getElementById("lasContraseñasCoinciden").innerHTML = "Las nuevas contraseñas no coinciden";
+        }
+        if(passwordNuevo === "" && passwordNuevoRepetido === ""){
             document.getElementById("lasContraseñasCoinciden").innerHTML = " ";
         }
     

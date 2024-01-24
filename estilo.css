@@ -1,9 +1,4 @@
-
-/* img {
-    width: 15px;
-    height: 15px;
-} */
-.cuerpo{
+.cuerpo {
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 25%;
     margin-right: 25%;
@@ -14,10 +9,12 @@
     padding-right: 6%;
     background-color: aliceblue;
 }
-.container{
+
+.container {
     border-style: outset;
     padding: 2%;
 }
+
 .cruz-roja {
     width: 20px; 
     height: 20px; 
@@ -25,33 +22,40 @@
     vertical-align: middle; 
     display: inline-block;
 }
-  .OK{
+
+.OK {
     width: 30px; 
     height: 30px; 
     margin-right: 1px;
     vertical-align: middle; 
     display: inline-block;
 }
-  .info{
+
+.info {
     width: 30px; 
     height: 30px; 
     margin-right: 10px;
     vertical-align: middle; 
     display: inline-block;
 }
-button{
+
+button {
     transition-duration: 0.4s;
     border-radius: 4px;
     background-color: aliceblue;
-    
-
 }
-button:hover{
-    background-color: #b90404; /* Green */
+
+button:hover {
+    background-color: #b90404; 
   color: white;
 }
-input{
+
+input {
     font-size: 15px;
-    width: 70%;
-    
+    width: 70%;   
+}
+
+.mensajeDeError {
+    font-size: 13px;
+    color: #b90404;
 }

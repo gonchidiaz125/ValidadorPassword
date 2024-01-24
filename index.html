@@ -1,21 +1,18 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="validadorDePassword.js"></script>
         <link rel="stylesheet" href="estilo.css">
         <script src="https://kit.fontawesome.com/0313043e4a.js" crossorigin="anonymous"></script>
-        
-        
+
         <title>Validador de Password</title>
     </head>
     <body class="cuerpo">
         <div>
             <h2>Modificar Clave</h2>
-            <!-- <input type="password" id="contraseñaActual" placeholder="Contraseña Actual"> <button onclick="HacerVisibleContraseña('contraseñaActual')"><i class="fa-solid fa-eye"></i></button> -->
             <input type="password" id="contraseñaActual" placeholder="Contraseña Actual"> <button id="btnMostrarPassowrdActual" ><i class="fa-solid fa-eye"></i></button>
             <br>
             <br>
@@ -23,7 +20,7 @@
             <br>
             <br>
             <input type="password" id="contraseñaNuevaRepetida"  placeholder="Repetir Contraseña Nueva"> <button id="btnMostrarContraseñaRepetida"><i class="fa-solid fa-eye"></i></button>
-            <p><span id="lasContraseñasCoinciden"></span></p>
+            <p class="mensajeDeError"><span id="lasContraseñasCoinciden"></span></p>
             <br>
             <br> 
             <button >CONTINUAR</button>
@@ -39,33 +36,33 @@
                 </div>
                 <div>
                     <div>
-                        <p><img id="faltaReglaCaracterLongMin" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterLongMin" src="/imagenes/ok.png" class="OK"><span id="reglaCaracterLongMin">  </span>Longuitud minima de 5 caracteres</p>
+                        <p><img id="faltaReglaCaracterLongMin" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterLongMin" src="/imagenes/ok.png" class="OK">Longuitud minima de 5 caracteres</p>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <p><img id="faltaReglaCaracterLongMax" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterLongMax" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterLongMax">     </span>Longuitud Maxima de veinte caracteres</p>
+                        <p><img id="faltaReglaCaracterLongMax" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterLongMax" src="/imagenes/ok.png"class="OK">Longuitud Maxima de veinte caracteres</p>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <p><img id="faltaReglaCaracterNumerico" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterNumerico" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterNumerico">     </span>Un caracteres numericos</p>
+                        <p><img id="faltaReglaCaracterNumerico" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterNumerico" src="/imagenes/ok.png"class="OK">Un caracteres numericos</p>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <p><img id="faltaReglaCaracterMinuscula" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterMinuscula" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterMinuscula">  </span>Una Minúscula</p>
+                        <p><img id="faltaReglaCaracterMinuscula" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterMinuscula" src="/imagenes/ok.png"class="OK">Una Minúscula</p>
                     </div>
                 </div>
                 <div>
                     <div>
-                        <p><img id="faltaReglaCaracterMayuscula" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterMayuscula" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterMayuscula">  </span>Una mayúscula</p>
+                        <p><img id="faltaReglaCaracterMayuscula" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterMayuscula" src="/imagenes/ok.png"class="OK">Una mayúscula</p>
                     </div>
                 </div>
                 
                 <div>
                     <div>
-                        <p><img id="faltaReglaCaracterEspecial" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterEspecial" src="/imagenes/ok.png"class="OK"><span id="reglaCaracterEspecial">  </span>Un Caracter Especial</p>
+                        <p><img id="faltaReglaCaracterEspecial" src="/imagenes/cruz roja.jpg" class="cruz-roja"><img id="okReglaCaracterEspecial" src="/imagenes/ok.png"class="OK">Un Caracter Especial</p>
                     </div>
                 </div>    
             </div>
