@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    //Ejecuto esto para que no se muestre si las reglas se cumplen o no se cumplen antes que el usuario ingrese una contraseña
+    RequisitosParaPasswordValido();
 
     // onclick="HacerVisibleContraseña('contraseñaActual')"
     // $("#btnMostrarPassowrdActual").click(HacerVisibleContraseña('contraseñaActual'));
@@ -9,7 +11,7 @@ $(document).ready(function() {
      });
 
      $("#contraseñaNueva").on("input", function(){
-        EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword("contraseñaNueva");
+        RequisitosParaPasswordValido("contraseñaNueva");
      });
      $("#contraseñaNueva").on("input",function(){
         RepetirNuevaContraseña("contraseñaNueva");
@@ -90,64 +92,83 @@ $(document).ready(function() {
         return false;
     }
     
-    function EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword() {
+    function RequisitosParaPasswordValido() {
          
         var password = document.getElementById("contraseñaNueva").value;
         if(password === ""){
-            document.getElementById("reglaCaracterLongMin").innerHTML = "";
-            document.getElementById("reglaCaracterLongMax").innerHTML = "";
-            document.getElementById("reglaCaracterNumerico").innerHTML = "";
-            document.getElementById("reglaCaracterMinuscula").innerHTML = "";
-            document.getElementById("reglaCaracterMayuscula").innerHTML = "";
-            document.getElementById("reglaCaracterEspecial").innerHTML = "";
+            $("#faltaReglaCaracterLongMin").hide();
+            $("#okReglaCaracterLongMin").hide();
+            $("#faltaReglaCaracterLongMax").hide();
+            $("#okReglaCaracterLongMax").hide();
+            $("#faltaReglaCaracterNumerico").hide();
+            $("#okReglaCaracterNumerico").hide();
+            $("#faltaReglaCaracterMinuscula").hide();
+            $("#okReglaCaracterMinuscula").hide();
+            $("#faltaReglaCaracterMayuscula").hide();
+            $("#okReglaCaracterMayuscula").hide();
+            $("#faltaReglaCaracterEspecial").hide();
+            $("#okReglaCaracterEspecial").hide();
+            
             return;
         }
         
         if  (ValidarLargoMinimo(password)) {
-            document.getElementById("reglaCaracterLongMin").innerHTML = "okReglaCaracterLongMin";
+            $("#okReglaCaracterLongMin").show();
+            $("#faltaReglaCaracterLongMin").hide();
             // muestro "OK: "
         } else {
-            document.getElementById("reglaCaracterLongMin").innerHTML = "faltaReglaCaracterLongMin";
+            $("#faltaReglaCaracterLongMin").show();
+            $("#okReglaCaracterLongMin").hide()
             // muestro "Falta: "
         }
     
         if  (ValidarLargoMaximo(password)){ 
-             document.getElementById("reglaCaracterLongMax").innerHTML = "okReglaCaracterLongMax";
+            $("#okReglaCaracterLongMax").show();
+            $("#faltaReglaCaracterLongMax").hide();
             // muestro "OK: "
         } else {
-            document.getElementById("reglaCaracterLongMax").innerHTML = "faltaReglaCaracterLongMax";
+            $("#faltaReglaCaracterLongMax").show();
+            $("#okReglaCaracterLongMax").hide();
             // muestro "Falta: "
         }
         
         if  (ValidarDebeContenerAlgunNumero(password)) {
-            document.getElementById("reglaCaracterNumerico").innerHTML = "okReglaCaracterNumerico";
+            $("#okReglaCaracterNumerico").show();
+            $("#faltaReglaCaracterNumerico").hide();
             // muestro "OK: "
         } else {
-            document.getElementById("reglaCaracterNumerico").innerHTML = "faltaReglaCaracterNumerico";
+            $("#faltaReglaCaracterNumerico").show();
+            $("#okReglaCaracterNumerico").hide();
             // muestro "Falta: "
         }
         
         if  (ValidarDebeContenerAlgunaMinuscula(password)) {
-            document.getElementById("reglaCaracterMinuscula").innerHTML = "okReglaCaracterMinuscula";
+            $("#okReglaCaracterMinuscula").show();
+            $("#faltaReglaCaracterMinuscula").hide();
             // muestro "OK: "
         } else {
-            document.getElementById("reglaCaracterMinuscula").innerHTML = "faltaReglaCaracterMinuscula";
+            $("#faltaReglaCaracterMinuscula").show();
+            $("#okReglaCaracterMinuscula").hide();
             // muestro "Falta: "
         }
         
         if  (ValidarDebeContenerAlgunaMayuscula(password)) {
-            document.getElementById("reglaCaracterMayuscula").innerHTML = "okReglaCaracterMayuscula";
+            $("#okReglaCaracterMayuscula").show();
+            $("#faltaReglaCaracterMayuscula").hide();
             // muestro "OK: "
         } else {
-            document.getElementById("reglaCaracterMayuscula").innerHTML = "faltaReglaCaracterMayuscula";
+            $("#faltaReglaCaracterMayuscula").show();
+            $("#okReglaCaracterMayuscula").hide();
             // muestro "Falta: "
         }
         
         if  (ValidarDebeContenerAlgunCaracterEspecial(password)) {
-            document.getElementById("reglaCaracterEspecial").innerHTML = "okReglaCaracterEspecial ";
+            $("#okReglaCaracterEspecial").show();
+            $("#faltaReglaCaracterEspecial").hide();
             // muestro "OK: "
         } else {
-             document.getElementById("reglaCaracterEspecial").innerHTML = "faltaReglaCaracterEspecial";
+            $("#faltaReglaCaracterEspecial").show();
+            $("#okReglaCaracterEspecial").hide();
             // muestro "Falta: "
         }
         
