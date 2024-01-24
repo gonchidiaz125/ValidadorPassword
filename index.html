@@ -4,22 +4,25 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="validadorDePassword.js"></script>
         <link rel="stylesheet" href="estilo.css">
         <script src="https://kit.fontawesome.com/0313043e4a.js" crossorigin="anonymous"></script>
+        
         
         <title>Validador de Password</title>
     </head>
     <body class="cuerpo">
         <div>
             <h2>Modificar Clave</h2>
-            <input type="password" id="contraseñaActual" placeholder="Contraseña Actual"> <button onclick="HacerVisibleContraseña('contraseñaActual')"><i class="fa-solid fa-eye"></i></button>
+            <!-- <input type="password" id="contraseñaActual" placeholder="Contraseña Actual"> <button onclick="HacerVisibleContraseña('contraseñaActual')"><i class="fa-solid fa-eye"></i></button> -->
+            <input type="password" id="contraseñaActual" placeholder="Contraseña Actual"> <button id="btnMostrarPassowrdActual" ><i class="fa-solid fa-eye"></i></button>
             <br>
             <br>
-            <input type="password" id="contraseñaNueva" placeholder="Contraseña Nueva" oninput="EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword()"> <button onclick="HacerVisibleContraseña('contraseñaNueva')"><i class="fa-solid fa-eye"></i></button>
+            <input type="password" id="contraseñaNueva" placeholder="Contraseña Nueva"> <button id="btnMostrarPasswordNuevo"><i class="fa-solid fa-eye"></i></button>
             <br>
             <br>
-            <input type="password" id="contraseñaNuevaRepetida"  placeholder="Repetir Contraseña Nueva" oninput="RepetirNuevaContraseña()"> <button onclick="HacerVisibleContraseña('contraseñaNuevaRepetida')"><i class="fa-solid fa-eye"></i></button>
+            <input type="password" id="contraseñaNuevaRepetida"  placeholder="Repetir Contraseña Nueva"> <button id="btnMostrarContraseñaRepetida"><i class="fa-solid fa-eye"></i></button>
             <p><span id="lasContraseñasCoinciden"></span></p>
             <br>
             <br> 
