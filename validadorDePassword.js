@@ -93,7 +93,16 @@ $(document).ready(function() {
     function EstoSeEjecutaCuandoPulsoUnaTeclaEnPassword() {
          
         var password = document.getElementById("contraseñaNueva").value;
-    
+        if(password === ""){
+            document.getElementById("reglaCaracterLongMin").innerHTML = "";
+            document.getElementById("reglaCaracterLongMax").innerHTML = "";
+            document.getElementById("reglaCaracterNumerico").innerHTML = "";
+            document.getElementById("reglaCaracterMinuscula").innerHTML = "";
+            document.getElementById("reglaCaracterMayuscula").innerHTML = "";
+            document.getElementById("reglaCaracterEspecial").innerHTML = "";
+            return;
+        }
+        
         if  (ValidarLargoMinimo(password)) {
             document.getElementById("reglaCaracterLongMin").innerHTML = "okReglaCaracterLongMin";
             // muestro "OK: "
@@ -141,6 +150,7 @@ $(document).ready(function() {
              document.getElementById("reglaCaracterEspecial").innerHTML = "faltaReglaCaracterEspecial";
             // muestro "Falta: "
         }
+        
     }
     
     function RepetirNuevaContraseña(){
