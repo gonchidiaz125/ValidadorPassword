@@ -3,24 +3,33 @@ $(document).ready(function() {
     //Ejecuto esto para que no se muestre si las reglas se cumplen o no se cumplen antes que el usuario ingrese una contraseña
     RequisitosParaPasswordValido();
 
-     $("#btnMostrarPassowrdActual").click(function() {
+    $("#btnContinuar").click(function() {
+        ValidarNuevoPasswordContraBackend();
+    });
+
+    $("#btnMostrarPassowrdActual").click(function() {
         HacerVisibleContraseña('contraseñaActual');
-     });
-     $("#contraseñaNueva").on("input", function(){
+    });
+
+    $("#contraseñaNueva").on("input", function(){
         RequisitosParaPasswordValido("contraseñaNueva");
-     });
-     $("#contraseñaNueva").on("input",function(){
+    });
+
+    $("#contraseñaNueva").on("input",function(){
         RepetirNuevaContraseña("contraseñaNueva");
-     });
-     $("#btnMostrarPasswordNuevo").click(function(){
+    });
+
+    $("#btnMostrarPasswordNuevo").click(function(){
         HacerVisibleContraseña("contraseñaNueva");
-     });
-     $("#contraseñaNuevaRepetida").on("input",function(){
+    });
+
+    $("#contraseñaNuevaRepetida").on("input",function(){
         RepetirNuevaContraseña("contraseñaNuevaRepetida");
-     });
-     $("#btnMostrarContraseñaRepetida").click(function(){
+    });
+
+    $("#btnMostrarContraseñaRepetida").click(function(){
         HacerVisibleContraseña("contraseñaNuevaRepetida");
-     });
+    });
 
     function ValidarLargoMinimo(password){
         let largoMinimo = 5;
@@ -105,7 +114,29 @@ $(document).ready(function() {
             return;
         }
         
-        if  (ValidarLargoMinimo(password)) {
+        let res = ValidarLargoMinimo(password);
+        ActualizarResultadoLargoMinimo(res);
+
+        res = ValidarLargoMaximo(password);
+        ActualizarResultadoLargoMaximo(res);
+
+        res = ValidarDebeContenerAlgunNumero(password);
+        ActualizarResultadoContenerCaracterNumerico(res);
+
+        res = ValidarDebeContenerAlgunaMinuscula(password);
+        ActualizarResultadoContenerAlgunaMinuscula(res);
+
+        res = ValidarDebeContenerAlgunaMayuscula(password);
+        ActualizarResultadoContenerAlgunaMayuscula(res);
+
+        res = ValidarDebeContenerAlgunCaracterEspecial(password);
+        ActualizarResultadoContenerAlgunCaracterEspecial(res);
+        
+    }
+
+    function ActualizarResultadoLargoMinimo(resultado)
+    {
+        if  (resultado) {
             $("#okReglaCaracterLongMin").show();
             $("#faltaReglaCaracterLongMin").hide();
         } else {
@@ -113,46 +144,63 @@ $(document).ready(function() {
             $("#okReglaCaracterLongMin").hide()
         }
     
-        if  (ValidarLargoMaximo(password)){ 
+      
+    }
+
+    function ActualizarResultadoLargoMaximo(resultado)
+    {        
+        
+        if  (resultado){ 
             $("#okReglaCaracterLongMax").show();
             $("#faltaReglaCaracterLongMax").hide();
         } else {
             $("#faltaReglaCaracterLongMax").show();
             $("#okReglaCaracterLongMax").hide();
         }
-        
-        if  (ValidarDebeContenerAlgunNumero(password)) {
+    }
+
+    function ActualizarResultadoContenerCaracterNumerico(resultado)
+    {                        
+        if  (resultado) {
             $("#okReglaCaracterNumerico").show();
             $("#faltaReglaCaracterNumerico").hide();
         } else {
             $("#faltaReglaCaracterNumerico").show();
             $("#okReglaCaracterNumerico").hide();
         }
-        
-        if  (ValidarDebeContenerAlgunaMinuscula(password)) {
+    }
+
+    function ActualizarResultadoContenerAlgunaMinuscula(resultado)
+    {                                        
+        if (resultado) {
             $("#okReglaCaracterMinuscula").show();
             $("#faltaReglaCaracterMinuscula").hide();
         } else {
             $("#faltaReglaCaracterMinuscula").show();
             $("#okReglaCaracterMinuscula").hide();
         }
-        
-        if  (ValidarDebeContenerAlgunaMayuscula(password)) {
+    }
+
+    function ActualizarResultadoContenerAlgunaMayuscula(resultado)
+    {                                                
+        if (resultado) {
             $("#okReglaCaracterMayuscula").show();
             $("#faltaReglaCaracterMayuscula").hide();
         } else {
             $("#faltaReglaCaracterMayuscula").show();
             $("#okReglaCaracterMayuscula").hide();
         }
-        
-        if  (ValidarDebeContenerAlgunCaracterEspecial(password)) {
+    }
+
+    function ActualizarResultadoContenerAlgunCaracterEspecial(resultado)
+    {                                                                
+        if (resultado) {
             $("#okReglaCaracterEspecial").show();
             $("#faltaReglaCaracterEspecial").hide();
         } else {
             $("#faltaReglaCaracterEspecial").show();
             $("#okReglaCaracterEspecial").hide();
         }
-        
     }
     
     function RepetirNuevaContraseña(){
@@ -181,6 +229,80 @@ $(document).ready(function() {
             passwordInput.type = 'password';
           }
     }    
+
+    function ValidarNuevoPasswordContraBackend() {        
+        let isLocalHost = window.location.href.includes("127.0.0.1")
+        let endpointUrl;
+
+        if (isLocalHost) {
+            endpointUrl ="http://localhost:5212/Password";
+        } else {
+            endpointUrl = "https://validadordepasswordwebapi.azurewebsites.net/Password";
+        }
+
+        // URL del endpoint y parámetro
+        //const endpointUrl = "http://localhost:5212/Password";
+        const nuevoPassword = $("#contraseñaNueva").val();
+
+        // Invocar el endpoint utilizando fetch
+        fetch(`${endpointUrl}?password=${nuevoPassword}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Manejar la respuesta del servidor (data)
+            //console.log(data);
+            actualizarReglasValidasDesdeBackend(data);
+        })
+        .catch(error => {
+            // Manejar errores
+            console.error("Error al realizar la solicitud:", error);
+        });
+
+    }
+
+    function actualizarReglasValidasDesdeBackend(resultadoValidacion) {
+        let reglas = resultadoValidacion.reglas;
+
+        // for para recorrer cada regla        
+        for (var i=0; i< reglas.length; i++)
+        {
+            // dentro del for, dependiendo del numero de regla, voy a mostra u ocultar los tildes verdes y cruces rojas
+            regla = reglas[i];
+
+            switch (regla.numeroRegla)
+            {
+                case 0:
+                    ActualizarResultadoLargoMinimo(regla.valida);
+                    break;
+
+                case 1:
+                    ActualizarResultadoLargoMaximo(regla.valida);
+                    break;
+                    
+                case 2:
+                    ActualizarResultadoContenerCaracterNumerico(regla.valida);
+                    break;
+
+                case 3:
+                    ActualizarResultadoContenerAlgunaMinuscula(regla.valida);
+                    break;
+
+                case 4:
+                    ActualizarResultadoContenerAlgunaMayuscula(regla.valida);
+                    break;
+
+                case 5:
+                    ActualizarResultadoContenerAlgunCaracterEspecial(regla.valida);
+                    break;
+            }            
+        }    
+
+    }
+        
 
 }); 
 
