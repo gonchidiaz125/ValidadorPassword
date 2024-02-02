@@ -16,32 +16,32 @@
 }
 
 .cruz-roja {
-    width: 20px; 
-    height: 20px; 
-    margin-right: 5px; 
+    width: 3%; 
+    height: 3%; 
+    margin-right: 3%; 
     vertical-align: middle; 
     display: inline-block;
 }
 
 .OK {
-    width: 30px; 
-    height: 30px; 
-    margin-right: 1px;
+    width: 4%; 
+    height: 4%; 
+    margin-right: 2%;
     vertical-align: middle; 
     display: inline-block;
 }
 
 .info {
-    width: 30px; 
-    height: 30px; 
-    margin-right: 10px;
+    width: 5%; 
+    height: 3%; 
+    margin-right: 1%;
     vertical-align: middle; 
     display: inline-block;
 }
 
 button {
     transition-duration: 0.4s;
-    border-radius: 4px;
+    border-radius: 10%;
     background-color: aliceblue;
 }
 
@@ -51,11 +51,11 @@ button:hover {
 }
 
 input {
-    font-size: 15px;
+    font-size: 90%;
     width: 70%;   
 }
 
 .mensajeDeError {
-    font-size: 13px;
+    font-size: 90%;
     color: #b90404;
 }
