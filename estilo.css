@@ -2,7 +2,8 @@
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 25%;
     margin-right: 25%;
-    margin-top: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     box-shadow: 0 0 110px rgba(0, 0, 0, 0.5);
     padding: 3%;
     padding-left: 6%;
@@ -10,10 +11,25 @@
     background-color: aliceblue;
 }
 
-.container {
-    border-style: outset;
-    padding: 2%;
+@media screen and (max-width: 1500px) {
+    .cuerpo {
+       
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 0%;
+        margin-bottom: 0%;
+        font-size: small;
+        
+    }
+    
 }
+
+
+
+@media screen and (max-width: 1500px) {
+    .container {
+ margin-bottom: 100%;
+}}
 
 .cruz-roja {
     width: 3%; 
@@ -22,6 +38,14 @@
     vertical-align: middle; 
     display: inline-block;
 }
+@media screen and (max-width: 1500px) {
+    .cruz-roja{
+        width: 6%; 
+        height: 6%; 
+        margin-right: 2%; 
+            
+    }
+    }
 
 .OK {
     width: 4%; 
@@ -31,6 +55,15 @@
     display: inline-block;
 }
 
+@media screen and (max-width: 1500px) {
+    .OK{
+        width: 6%; 
+        height: 8%; 
+        margin-right: 1%;
+        
+        }
+    }
+
 .info {
     width: 5%; 
     height: 3%; 
@@ -38,11 +71,21 @@
     vertical-align: middle; 
     display: inline-block;
 }
+@media screen and (max-width: 1500px) {
+    .info {
+        width: 10%; 
+        height: 3%; 
+        margin-right: 1%;
+        vertical-align: middle; 
+        display: inline-block;  
+    }
+}
 
 button {
     transition-duration: 0.4s;
     border-radius: 10%;
     background-color: aliceblue;
+    margin-bottom: 10%;
 }
 
 button:hover {
