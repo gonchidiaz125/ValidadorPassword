@@ -236,16 +236,17 @@ $(document).ready(function() {
         const nuevoPasswordRepetido = $("#contraseñaNuevaRepetida").val();
 
         if (passwordActual === "" || nuevoPassword === "" || nuevoPasswordRepetido === "") {
-            alert("Debe completar la contraseña actual y las contraseñas nuevas");
+            // alert("Debe completar la contraseña actual y las contraseñas nuevas");
+            Swal.fire({
+                title: "Atención",
+                text: "Para confirmar la nueva contraseña DEBE completar la contraseña actual y las contraseñas nuevas",
+                icon: "warning"
+              });
             return;
         }
 
         $("#spinner").show();
-
-        setTimeout(function() {
-            $("#spinner").hide();
-          }, 1000);
-
+        
         let isLocalHost = window.location.href.includes("127.0.0.1")
         let endpointUrl;
 
@@ -270,17 +271,20 @@ $(document).ready(function() {
         .then(data => {
             // Manejar la respuesta del servidor (data)
             //console.log(data);
+            $("#spinner").hide();
             actualizarReglasValidasDesdeBackend(data);
+
         })
         .catch(error => {
             // Manejar errores
+            $("#spinner").hide();
             console.error("Error al realizar la solicitud:", error);
         });
 
     }
 
     function actualizarReglasValidasDesdeBackend(resultadoValidacion) {
-        let reglas = resultadoValidacion.reglas;
+        let reglas = resultadoValidacion.reglas;        
 
         // for para recorrer cada regla        
         for (var i=0; i< reglas.length; i++)
@@ -315,6 +319,20 @@ $(document).ready(function() {
                     break;
             }            
         }    
+
+        if (resultadoValidacion.valida) {
+            Swal.fire({
+                title: "Exito",
+                text: "La nueva contraseña ha sido actualizada correctamente",
+                icon: "success"
+              });
+        } else {
+            Swal.fire({
+                title: "Atención",
+                text: "La nueva contraseña no cumple con todas las reglas requeridas",
+                icon: "error"
+              });
+        }
 
     }
         
