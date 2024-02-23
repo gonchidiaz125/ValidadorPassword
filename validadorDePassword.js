@@ -231,6 +231,21 @@ $(document).ready(function() {
     }    
 
     function ValidarNuevoPasswordContraBackend() {        
+        const passwordActual = $("#contraseñaActual").val();
+        const nuevoPassword = $("#contraseñaNueva").val();
+        const nuevoPasswordRepetido = $("#contraseñaNuevaRepetida").val();
+
+        if (passwordActual === "" || nuevoPassword === "" || nuevoPasswordRepetido === "") {
+            alert("Debe completar la contraseña actual y las contraseñas nuevas");
+            return;
+        }
+
+        $("#spinner").show();
+
+        setTimeout(function() {
+            $("#spinner").hide();
+          }, 1000);
+
         let isLocalHost = window.location.href.includes("127.0.0.1")
         let endpointUrl;
 
@@ -242,7 +257,7 @@ $(document).ready(function() {
 
         // URL del endpoint y parámetro
         //const endpointUrl = "http://localhost:5212/Password";
-        const nuevoPassword = $("#contraseñaNueva").val();
+        
 
         // Invocar el endpoint utilizando fetch
         fetch(`${endpointUrl}?password=${nuevoPassword}`, {

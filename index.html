@@ -13,10 +13,12 @@
 
         <title>Validador de Password</title>
         <link rel="icon" href="imagenes/candado.png" type="image/x-icon">
+        
     </head>
     <body class="cuerpo">
         <div>
             <h2>Modificar Contraseña</h2>
+            
             <br>
             <div class="input-group mb-3">
                 <input type="password" id="contraseñaActual" class="form-control" placeholder="Contraseña Actual" aria-label="Recipient's username" aria-describedby="button-addon2">
@@ -41,9 +43,17 @@
             <!-- <input type="password" id="contraseñaNuevaRepetida"  placeholder="Repetir Contraseña Nueva"> <button id="btnMostrarContraseñaRepetida"><i class="fa-solid fa-eye"></i></button> -->
             <p class="mensajeDeError"><span id="lasContraseñasCoinciden"></span></p>
             <br>
-            <button type="button" class="btn btn-primary" id="btnContinuar">Confirmar contraseña</button>
-            <br>
-            <br>
+
+            <div style="display: inline-block">
+                <button type="button" class="btn btn-primary" id="btnContinuar">                                
+                    Confirmar contraseña                                
+                </button>
+    
+                <div id="spinner" class="spinner" style="display: none;"></div>    
+            </div>
+            
+            
+            
             <br>
             <div class="container">
                 <div>
