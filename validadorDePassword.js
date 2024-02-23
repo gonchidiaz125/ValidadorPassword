@@ -273,7 +273,11 @@ $(document).ready(function() {
             //console.log(data);
             $("#spinner").hide();
             actualizarReglasValidasDesdeBackend(data);
-
+            var nuevaContraseña = $("#contraseñaNueva").val();
+            $("#contraseñaActual").val(nuevaContraseña);
+            $("#contraseñaNueva, #contraseñaNuevaRepetida").val("");
+            $(".OK, .cruz-roja").addClass("d-none");
+            
         })
         .catch(error => {
             // Manejar errores
@@ -338,4 +342,5 @@ $(document).ready(function() {
         
 
 }); 
+
 
