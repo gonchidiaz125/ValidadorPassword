@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     //Ejecuto esto para que no se muestre si las reglas se cumplen o no se cumplen antes que el usuario ingrese una contraseña
-    RequisitosParaPasswordValido();
+    ValidarRequisitosParaPasswordValido();
 
     $("#btnContinuar").click(function() {
         ValidarNuevoPasswordContraBackend();
@@ -12,7 +12,7 @@ $(document).ready(function() {
     });
 
     $("#contraseñaNueva").on("input", function(){
-        RequisitosParaPasswordValido("contraseñaNueva");
+        ValidarRequisitosParaPasswordValido("contraseñaNueva");
     });
 
     $("#contraseñaNueva").on("input",function(){
@@ -93,24 +93,27 @@ $(document).ready(function() {
         }
         return false;
     }
+
+    function ocultarResultadoDeReglas() {
+        $("#faltaReglaCaracterLongMin").hide();
+        $("#okReglaCaracterLongMin").hide();
+        $("#faltaReglaCaracterLongMax").hide();
+        $("#okReglaCaracterLongMax").hide();
+        $("#faltaReglaCaracterNumerico").hide();
+        $("#okReglaCaracterNumerico").hide();
+        $("#faltaReglaCaracterMinuscula").hide();
+        $("#okReglaCaracterMinuscula").hide();
+        $("#faltaReglaCaracterMayuscula").hide();
+        $("#okReglaCaracterMayuscula").hide();
+        $("#faltaReglaCaracterEspecial").hide();
+        $("#okReglaCaracterEspecial").hide();
+    }
     
-    function RequisitosParaPasswordValido() {
+    function ValidarRequisitosParaPasswordValido() {
          
         var password = document.getElementById("contraseñaNueva").value;
         if(password === ""){
-            $("#faltaReglaCaracterLongMin").hide();
-            $("#okReglaCaracterLongMin").hide();
-            $("#faltaReglaCaracterLongMax").hide();
-            $("#okReglaCaracterLongMax").hide();
-            $("#faltaReglaCaracterNumerico").hide();
-            $("#okReglaCaracterNumerico").hide();
-            $("#faltaReglaCaracterMinuscula").hide();
-            $("#okReglaCaracterMinuscula").hide();
-            $("#faltaReglaCaracterMayuscula").hide();
-            $("#okReglaCaracterMayuscula").hide();
-            $("#faltaReglaCaracterEspecial").hide();
-            $("#okReglaCaracterEspecial").hide();
-
+            ocultarResultadoDeReglas();
             return;
         }
         
@@ -245,6 +248,15 @@ $(document).ready(function() {
             return;
         }
 
+        if (nuevoPassword !== nuevoPasswordRepetido) {
+            Swal.fire({
+                title: "Atención",
+                text: "La contraseña nueva no coincide con la repetición de la contraseña",
+                icon: "error"
+              });
+            return;
+        }
+
         $("#spinner").show();
         
         let isLocalHost = window.location.href.includes("127.0.0.1")
@@ -272,12 +284,7 @@ $(document).ready(function() {
             // Manejar la respuesta del servidor (data)
             //console.log(data);
             $("#spinner").hide();
-            actualizarReglasValidasDesdeBackend(data);
-            var nuevaContraseña = $("#contraseñaNueva").val();
-            $("#contraseñaActual").val(nuevaContraseña);
-            $("#contraseñaNueva, #contraseñaNuevaRepetida").val("");
-            $(".OK, .cruz-roja").addClass("d-none");
-            
+            actualizarReglasValidasDesdeBackend(data);                                    
         })
         .catch(error => {
             // Manejar errores
@@ -330,6 +337,12 @@ $(document).ready(function() {
                 text: "La nueva contraseña ha sido actualizada correctamente",
                 icon: "success"
               });
+
+            var nuevaContraseña = $("#contraseñaNueva").val();
+            $("#contraseñaActual").val(nuevaContraseña);
+            $("#contraseñaNueva, #contraseñaNuevaRepetida").val("");
+
+            ocultarResultadoDeReglas();
         } else {
             Swal.fire({
                 title: "Atención",
@@ -339,8 +352,7 @@ $(document).ready(function() {
         }
 
     }
-        
-
+    
 }); 
 
 
