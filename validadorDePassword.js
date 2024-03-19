@@ -12,7 +12,7 @@ $(document).ready(function() {
     });
 
     $("#contraseñaNueva").on("input", function(){
-        ValidarRequisitosParaPasswordValido("contraseñaNueva");
+        ValidarRequisitosParaPasswordValido();
     });
 
     $("#contraseñaNueva").on("input",function(){
@@ -117,24 +117,26 @@ $(document).ready(function() {
             return;
         }
         
-        let res = ValidarLargoMinimo(password);
-        ActualizarResultadoLargoMinimo(res);
+        let res0 = ValidarLargoMinimo(password);
+        ActualizarResultadoLargoMinimo(res0);
 
-        res = ValidarLargoMaximo(password);
-        ActualizarResultadoLargoMaximo(res);
+        let res1 = ValidarLargoMaximo(password);
+        ActualizarResultadoLargoMaximo(res1);
 
-        res = ValidarDebeContenerAlgunNumero(password);
-        ActualizarResultadoContenerCaracterNumerico(res);
+        let res2 = ValidarDebeContenerAlgunNumero(password);
+        ActualizarResultadoContenerCaracterNumerico(res2);
 
-        res = ValidarDebeContenerAlgunaMinuscula(password);
-        ActualizarResultadoContenerAlgunaMinuscula(res);
+        let res3 = ValidarDebeContenerAlgunaMinuscula(password);
+        ActualizarResultadoContenerAlgunaMinuscula(res3);
 
-        res = ValidarDebeContenerAlgunaMayuscula(password);
-        ActualizarResultadoContenerAlgunaMayuscula(res);
+        let res4 = ValidarDebeContenerAlgunaMayuscula(password);
+        ActualizarResultadoContenerAlgunaMayuscula(res4);
 
-        res = ValidarDebeContenerAlgunCaracterEspecial(password);
-        ActualizarResultadoContenerAlgunCaracterEspecial(res);
+        let res5 = ValidarDebeContenerAlgunCaracterEspecial(password);
+        ActualizarResultadoContenerAlgunCaracterEspecial(res5);
         
+        // validación general solo será true si cada regla individual se cumple
+        return res0 && res1 && res2 && res3 && res4 && res5
     }
 
     function ActualizarResultadoLargoMinimo(resultado)
@@ -258,40 +260,72 @@ $(document).ready(function() {
         }
 
         $("#spinner").show();
-        
-        let isLocalHost = window.location.href.includes("127.0.0.1")
-        let endpointUrl;
 
-        if (isLocalHost) {
-            endpointUrl ="http://localhost:5212/Password";
+        let backendDisponible = false;
+
+        if (backendDisponible) {
+            let isLocalHost = window.location.href.includes("127.0.0.1")
+            let endpointUrl;
+
+            if (isLocalHost) {
+                endpointUrl ="http://localhost:5212/Password";
+            } else {
+                endpointUrl = "https://validadordepasswordwebapi.azurewebsites.net/Password";
+            }
+
+            // Invocar el endpoint utilizando fetch
+            fetch(`${endpointUrl}?password=${nuevoPassword}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Manejar la respuesta del servidor (data)
+                //console.log(data);
+                $("#spinner").hide();
+                actualizarReglasValidasDesdeBackend(data);                                    
+            })
+            .catch(error => {
+                // Manejar errores
+                $("#spinner").hide();
+                console.error("Error al realizar la solicitud:", error);
+            });
+
         } else {
-            endpointUrl = "https://validadordepasswordwebapi.azurewebsites.net/Password";
+            simularRespuestaBackend();
         }
+    }
 
-        // URL del endpoint y parámetro
-        //const endpointUrl = "http://localhost:5212/Password";
-        
+    function simularRespuestaBackend() {
+        // Esta función se usa cuando no tenemos la API del backend disponible (antes la teníamos en Azure)
+        // Momentaneamente vamos a seguir validando solo en Front-end pero vamos a simular que es una respuesta del backend
+        // Cuando tengamos la web API publicada en otro sitio eliminaremos este código para volver a usar la respuesta del backend
 
-        // Invocar el endpoint utilizando fetch
-        fetch(`${endpointUrl}?password=${nuevoPassword}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        })
-        .then(response => response.json())
-        .then(data => {
-            // Manejar la respuesta del servidor (data)
-            //console.log(data);
-            $("#spinner").hide();
-            actualizarReglasValidasDesdeBackend(data);                                    
-        })
-        .catch(error => {
-            // Manejar errores
-            $("#spinner").hide();
-            console.error("Error al realizar la solicitud:", error);
-        });
+        let resultado = ValidarRequisitosParaPasswordValido();
 
+        $("#spinner").hide();
+
+        if (resultado) {
+            Swal.fire({
+                title: "Exito",
+                text: "La nueva contraseña ha sido actualizada correctamente",
+                icon: "success"
+              });
+
+            var nuevaContraseña = $("#contraseñaNueva").val();
+            $("#contraseñaActual").val(nuevaContraseña);
+            $("#contraseñaNueva, #contraseñaNuevaRepetida").val("");
+
+            ocultarResultadoDeReglas();
+        } else {
+            Swal.fire({
+                title: "Atención",
+                text: "La nueva contraseña no cumple con todas las reglas requeridas",
+                icon: "error"
+              });
+        }
     }
 
     function actualizarReglasValidasDesdeBackend(resultadoValidacion) {
